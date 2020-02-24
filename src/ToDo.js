@@ -12,7 +12,7 @@ class ToDo extends React.Component {
     }
   }
   addTodo(newtodotext) {
-    if (!this.state.todos.includes(newtodotext) && newtodotext != '') {
+    if (!this.state.todos.includes(newtodotext) && newtodotext.replace(/\s/g, '').length) {
       this.setState({todos: [...this.state.todos, newtodotext ]})
       document.querySelector("input").value = ''
       document.querySelector("#danger-card").style.display = "none"
