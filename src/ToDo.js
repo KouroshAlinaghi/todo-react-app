@@ -12,8 +12,12 @@ class ToDo extends React.Component {
     }
   }
   addTodo(newtodotext) {
-    if (!this.state.todos.includes(newtodotext)) {
+    if (!this.state.todos.includes(newtodotext) && newtodotext != '') {
       this.setState({todos: [...this.state.todos, newtodotext ]})
+      document.querySelector("input").value = ''
+      document.querySelector("#danger-card").style.display = "none"
+    } else {
+      document.querySelector("#danger-card").style.display = "block"
     }
   }
   removeItem(item) {
