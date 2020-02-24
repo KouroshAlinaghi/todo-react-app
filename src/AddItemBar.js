@@ -15,13 +15,18 @@ class AddItemBar extends React.Component {
   handleKeyDown(event) {
     if(event.keyCode === 13) { 
       this.props.onSubmit(this.state.inputValue)
+      this.state.inputValue = '';
     }
   }
   render() {
     return (
       <div className="input-group" >
         <input type="text" onChange={evt => this.updateInputValue(evt)} className="form-control" onKeyDown={this.handleKeyDown} />
-        <button onClick={() => this.props.onSubmit(this.state.inputValue)} className="btn btn-primary ml-2">Add to list</button>
+        <button onClick={() => {
+            this.props.onSubmit(this.state.inputValue);
+            this.state.inputValue = '';
+          }
+        } className="btn btn-primary ml-2">Add to list</button>
       </div>
     )
   }
