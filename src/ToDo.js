@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import ItemLists from './ItemLists'
-import Item from './Item'
 import AddItemBar from './AddItemBar'
 
 class ToDo extends React.Component {
