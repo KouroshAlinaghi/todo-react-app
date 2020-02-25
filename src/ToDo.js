@@ -13,9 +13,9 @@ class ToDo extends React.Component {
     if (!this.state.todos.filter(obj => obj.text == newtodotext).length == 1 && newtodotext.replace(/\s/g, '').length) {
       this.setState({todos: [...this.state.todos, {text: newtodotext, isDone: false} ]})
       document.querySelector("input").value = ''
-      document.querySelector("#danger-card").style.display = "none"
+      document.querySelector("#alert").style.display = "none"
     } else {
-      document.querySelector("#danger-card").style.display = "block"
+      document.querySelector("#alert").style.display = "block"
     }
   }
   removeItem(text) {
@@ -44,7 +44,6 @@ class ToDo extends React.Component {
   }
   removeAll() {
     this.setState({todos: []});
-    document.querySelector("input[type=text]").value = ''
   }
 }
 
