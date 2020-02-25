@@ -43,7 +43,8 @@ class ToDo extends React.Component {
     this.setState({ todos: clonedTodos });
   }
   removeAll() {
-    this.setState({todos: []})
+    this.setState({todos: []});
+    document.querySelector("input[type=text]").value = ''
   }
 }
 
