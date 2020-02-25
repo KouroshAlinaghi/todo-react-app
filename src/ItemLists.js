@@ -9,7 +9,7 @@ class ItemLists extends React.Component {
     return (
       <ul className="list-group mt-5">
         {this.props.todos.map((t, i) => (
-          <Item text={t} key={i} removeItem={item => this.props.removeItem(item)} />
+          <Item text={t.text} key={i} removeItem={item => this.props.removeItem(item)} makeDone={text => this.props.makeDone(text)} isDone={t.isDone} />
         ))}
       </ul>
     )

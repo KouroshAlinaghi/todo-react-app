@@ -12,29 +12,37 @@ class ToDo extends React.Component {
     }
   }
   addTodo(newtodotext) {
-    if (!this.state.todos.includes(newtodotext) && newtodotext.replace(/\s/g, '').length) {
-      this.setState({todos: [...this.state.todos, newtodotext ]})
+    if (!this.state.todos.filter(obj => obj.text == newtodotext).length == 1 && newtodotext.replace(/\s/g, '').length) {
+      this.setState({todos: [...this.state.todos, {text: newtodotext, isDone: false} ]})
       document.querySelector("input").value = ''
       document.querySelector("#danger-card").style.display = "none"
     } else {
       document.querySelector("#danger-card").style.display = "block"
     }
   }
-  removeItem(item) {
-    this.setState({todos: this.state.todos.filter(i => i !== item)})
+  removeItem(text) {
+    this.setState({todos: this.state.todos.filter(obj => obj.text !== text)})
   }
   render() {
     return (
       <div>
         <h2>Todo App</h2>
-        <AddItemBar onSubmit={t => this.addTodo(t)} className="card m-5" />
+        <AddItemBar onSubmit={text => this.addTodo(text)} className="card m-5" />
         {this.state.todos.length !== 0 &&
-          <ItemLists todos={this.state.todos} removeItem={item => this.removeItem(item)} />
+          <ItemLists todos={this.state.todos} removeItem={item => this.removeItem(item)} makeDone={text => this.makeDone(text)} />
         }
         <button className="btn btn-danger mt-5" onClick={() => this.removeAll()}>Remove All</button>
         <h6 className="mt-2">{this.state.todos.length} total todos</h6>
       </div>
     )
+  }
+  makeDone(text) {
+    console.log(text)
+    const { todos } = this.state,
+    index = todos.findIndex(todo => todo.text === text),
+    clonedTodos = [...todos];
+    clonedTodos[index].isDone = !clonedTodos[index].isDone;
+    this.setState({ todos: clonedTodos });
   }
   removeAll() {
     this.setState({todos: []})
