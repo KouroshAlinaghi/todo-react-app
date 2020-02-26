@@ -35,7 +35,6 @@ class ToDo extends React.Component {
     )
   }
   makeDone(text) {
-    console.log(text)
     const { todos } = this.state,
     index = todos.findIndex(todo => todo.text === text),
     clonedTodos = [...todos];
