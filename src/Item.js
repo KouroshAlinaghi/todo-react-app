@@ -3,7 +3,7 @@ import React from 'react';
 function Item(props) {
   let className = props.isDone ? "list-group-item list-group-item-success" : "list-group-item"
   return (
-    <li className={className}>
+    <li className={className} style={{overflow: 'hidden', 'text-overflow': 'ellipsis'}}>
       <h5 style={{display: "inline", color: "#444"}}>{props.text}</h5>
       <div className="btn-group" style={{float: "right"}}>
         <button onClick={() => props.makeDone(props.text)} className="btn btn-success btn-sm" style={{float: "right"}}>Mark as {props.isDone ? "Undone" : "Done"}</button>
